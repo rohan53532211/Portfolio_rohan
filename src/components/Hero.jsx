@@ -94,25 +94,35 @@ export default function Hero() {
       <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-20 lg:py-22">
         <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="min-w-0 lg:col-span-7">
-            <div className="mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1.5 shadow-xs sm:mb-6 sm:px-3.5">
+            <div className="mb-4 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1.5 shadow-xs sm:mb-5 sm:px-3.5">
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--emerald-status)] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--emerald-status)]" />
               </span>
               <span className="font-mono-code text-[11px] font-medium text-[var(--text-secondary)] sm:text-xs">
-                IIT Kanpur &apos;27 · Open to SDE / Frontend · Product · Finance
+                Open to SDE / Frontend · Product · Finance Roles
               </span>
             </div>
 
-            <h1 className="text-[2rem] leading-[1.12] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.3rem] lg:leading-[1.08]">
-              {PROFILE.headlineLead}{' '}
+            <h1 className="text-[2.25rem] leading-[1.08] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.5rem]">
+              Hi, I&apos;m{' '}
               <span className="font-serif-display font-normal italic text-[var(--accent-primary)]">
-                {PROFILE.headlineAccent}
-              </span>{' '}
-              {PROFILE.headlineTail}
+                {PROFILE.name}
+              </span>
+              .
             </h1>
 
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)] sm:mt-5 sm:text-lg">
+            <p className="mt-3 text-base font-semibold tracking-tight text-[var(--text-primary)] sm:text-xl">
+              Final-Year Undergraduate at {PROFILE.institute} · {PROFILE.role}
+            </p>
+            <p className="mt-1 font-mono-code text-xs text-[var(--text-muted)] sm:text-[13px]">
+              {PROFILE.degree}
+            </p>
+
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)] sm:mt-5 sm:text-base">
+              {PROFILE.headlineLead}{' '}
+              <span className="font-medium text-[var(--text-primary)]">{PROFILE.headlineAccent}</span>{' '}
+              {PROFILE.headlineTail}{' '}
               {PROFILE.subTagline}
             </p>
 
