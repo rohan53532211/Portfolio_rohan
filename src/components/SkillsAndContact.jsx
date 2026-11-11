@@ -6,7 +6,7 @@ import Reveal from './Reveal';
 export default function SkillsAndContact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '', botField: '' });
-  const [submitState, setSubmitState] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'fallback'
+  const [submitState, setSubmitState] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'mailto'
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleCopyEmail = async () => {
@@ -19,12 +19,12 @@ export default function SkillsAndContact() {
     }
   };
 
-  const openMailtoFallback = () => {
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name || 'Visitor'}`);
+  const buildMailtoUrl = () => {
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name.trim() || 'Visitor'}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+      `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`,
     );
-    window.location.href = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
+    return `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
   };
 
   const handleSubmit = async (e) => {
@@ -38,29 +38,39 @@ export default function SkillsAndContact() {
 
     setSubmitState('submitting');
 
-    try {
-      const payload = new URLSearchParams({
-        'form-name': 'contact',
-        'bot-field': formData.botField,
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        message: formData.message.trim(),
-      });
+    const payload = new URLSearchParams({
+      'form-name': 'contact',
+      'bot-field': formData.botField,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    });
 
-      const res = await fetch('/__forms.html', {
+    try {
+      let res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: payload.toString(),
       });
 
+      if (!res.ok) {
+        res = await fetch('/__forms.html', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: payload.toString(),
+        });
+      }
+
       if (res.ok) {
         setSubmitState('success');
         setFormData({ name: '', email: '', message: '', botField: '' });
       } else {
-        setSubmitState('fallback');
+        setSubmitState('mailto');
+        window.location.href = buildMailtoUrl();
       }
     } catch {
-      setSubmitState('fallback');
+      setSubmitState('mailto');
+      window.location.href = buildMailtoUrl();
     }
   };
 
@@ -194,16 +204,12 @@ export default function SkillsAndContact() {
                 </div>
               )}
 
-              {submitState === 'fallback' && (
-                <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-center text-xs text-[var(--text-secondary)]">
-                  Form endpoint unavailable in this preview.{' '}
-                  <button
-                    type="button"
-                    onClick={openMailtoFallback}
-                    className="cursor-pointer font-semibold text-[var(--accent-primary)] underline"
-                  >
-                    Send directly via your email app
-                  </button>
+              {submitState === 'mailto' && (
+                <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-center text-xs text-[var(--text-secondary)]">
+                  Opening your email client to send to{' '}
+                  <a href={buildMailtoUrl()} className="font-semibold text-emerald-600 underline dark:text-emerald-300">
+                    {PROFILE.email}
+                  </a>
                   .
                 </div>
               )}
