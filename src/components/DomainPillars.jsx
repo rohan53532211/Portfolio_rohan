@@ -31,7 +31,7 @@ export default function DomainPillars() {
               </p>
             </div>
 
-            <div className="inline-flex flex-wrap gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
+            <div className="grid w-full grid-cols-1 gap-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1 sm:inline-flex sm:w-auto sm:flex-wrap">
               {DOMAIN_PILLARS.map((pillar) => {
                 const Icon = ICONS[pillar.id];
                 const isSelected = pillar.id === activeId;
@@ -40,7 +40,7 @@ export default function DomainPillars() {
                     key={pillar.id}
                     type="button"
                     onClick={() => setActiveId(pillar.id)}
-                    className={`inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all ${
+                    className={`inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3.5 py-2.5 text-xs font-semibold transition-all sm:py-2 ${
                       isSelected
                         ? 'bg-[var(--text-primary)] text-[var(--bg-page)] shadow-xs'
                         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -61,9 +61,9 @@ export default function DomainPillars() {
           </div>
         </Reveal>
 
-        <div className="surface-card animate-modal-pop mt-6 rounded-2xl p-5 shadow-xs sm:p-7" key={active.id}>
+        <div className="surface-card animate-modal-pop mt-6 rounded-2xl p-4 shadow-xs sm:p-7" key={active.id}>
           <div className="grid gap-6 lg:grid-cols-12">
-            <div className="flex flex-col justify-between lg:col-span-5">
+            <div className="flex min-w-0 flex-col justify-between lg:col-span-5">
               <div>
                 <span className="inline-block rounded-full bg-[var(--accent-soft)] px-3 py-1 font-mono-code text-[11px] font-semibold text-[var(--accent-primary)]">
                   {active.badge}
@@ -105,7 +105,7 @@ export default function DomainPillars() {
               </div>
             </div>
 
-            <div className="lg:col-span-7">
+            <div className="min-w-0 lg:col-span-7">
               {active.storySteps ? (
                 <div>
                   <div className="mb-3 flex items-center justify-between">

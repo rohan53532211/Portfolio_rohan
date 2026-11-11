@@ -110,7 +110,7 @@ export default function Navbar({ darkMode, onToggleTheme, onOpenPalette }) {
             </button>
 
             {resumeMenuOpen && (
-              <div className="surface-card animate-modal-pop absolute right-0 mt-2 w-64 rounded-xl p-1.5 shadow-xl">
+              <div className="surface-card animate-modal-pop absolute right-0 mt-2 w-[min(16rem,calc(100vw-2rem))] rounded-xl p-1.5 shadow-xl">
                 <p className="px-2.5 py-1 font-mono-code text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
                   Role-Tailored PDFs
                 </p>
@@ -148,17 +148,31 @@ export default function Navbar({ darkMode, onToggleTheme, onOpenPalette }) {
 
       {mobileOpen && (
         <div className="border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 md:hidden">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-md px-2 py-1.5 text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
               >
                 {item.label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenPalette();
+              }}
+              className="mt-1 flex cursor-pointer items-center justify-between rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-3 py-2.5 text-sm font-medium text-[var(--text-primary)]"
+            >
+              <span className="inline-flex items-center gap-2">
+                <Command className="h-4 w-4 text-[var(--accent-primary)]" />
+                <span>Quick Jump / Search</span>
+              </span>
+              <kbd className="rounded bg-[var(--bg-surface)] px-1.5 py-0.5 font-mono-code text-[11px]">/</kbd>
+            </button>
           </div>
         </div>
       )}

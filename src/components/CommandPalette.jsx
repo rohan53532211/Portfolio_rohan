@@ -146,7 +146,7 @@ export default function CommandPalette({ open, onClose, darkMode, onToggleTheme,
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/55 px-4 pt-20 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/55 px-3 pt-14 backdrop-blur-xs sm:px-4 sm:pt-20"
       role="dialog"
       aria-modal="true"
       aria-label="Quick command palette"
@@ -164,7 +164,7 @@ export default function CommandPalette({ open, onClose, darkMode, onToggleTheme,
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search projects, SDE/PM/Finance resumes, or actions..."
-            className="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
+            className="w-full bg-transparent text-base text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none sm:text-sm"
           />
           <button
             type="button"

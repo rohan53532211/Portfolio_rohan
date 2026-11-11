@@ -309,7 +309,7 @@ export default function UiCraftLab() {
             <div
               role="tablist"
               aria-label="Interactive lab modes"
-              className="inline-flex flex-wrap rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1"
+              className="grid w-full grid-cols-1 gap-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1 sm:inline-flex sm:w-auto sm:flex-wrap"
             >
               {[
                 { id: 'frisbee', label: '7v7 Frisbee Sim', icon: Activity },
@@ -325,7 +325,7 @@ export default function UiCraftLab() {
                     role="tab"
                     aria-selected={active}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all ${
+                    className={`inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3.5 py-2.5 text-xs font-semibold transition-all sm:py-2 ${
                       active
                         ? 'bg-[var(--text-primary)] text-[var(--bg-page)] shadow-xs'
                         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -376,23 +376,23 @@ export default function UiCraftLab() {
 
         {/* TAB 1: 7v7 Ultimate Frisbee Game Simulator */}
         {activeTab === 'frisbee' && (
-          <div className="surface-card animate-modal-pop mt-4 grid gap-6 rounded-2xl p-4 shadow-xs sm:p-6 lg:grid-cols-12">
-            <div className="lg:col-span-8">
-              <div className="relative overflow-hidden rounded-xl border border-emerald-900/30 bg-gradient-to-br from-[#0d3b2e] via-[#0b2e24] to-[#081f19] p-3">
-                <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1 font-mono-code text-[11px] text-emerald-200/90">
+          <div className="surface-card animate-modal-pop mt-4 grid gap-6 rounded-2xl p-3.5 shadow-xs sm:p-6 lg:grid-cols-12">
+            <div className="min-w-0 lg:col-span-8">
+              <div className="relative overflow-hidden rounded-xl border border-emerald-900/30 bg-gradient-to-br from-[#0d3b2e] via-[#0b2e24] to-[#081f19] p-2.5 sm:p-3">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1 font-mono-code text-[10px] text-emerald-200/90 sm:text-[11px]">
                   <span className="inline-flex items-center gap-1.5">
-                    <MousePointerClick className="h-3.5 w-3.5 text-amber-300" />
-                    <span>7v7 Match · Click anywhere on the pitch to change the cut &amp; throw target</span>
+                    <MousePointerClick className="h-3.5 w-3.5 shrink-0 text-amber-300" />
+                    <span>7v7 · Tap or click pitch to set throw target</span>
                   </span>
                   <span className="rounded bg-white/10 px-2 py-0.5 text-[10px]">
-                    O1–O7 (Offense) vs D1–D7 (Defense)
+                    O1–O7 vs D1–D7
                   </span>
                 </div>
 
                 <svg
                   viewBox="0 0 420 210"
                   onClick={handleFieldClick}
-                  className="h-auto w-full cursor-crosshair"
+                  className="h-auto w-full touch-manipulation cursor-crosshair select-none"
                   role="img"
                   aria-label="7v7 Ultimate Frisbee tactical simulation pitch"
                 >
@@ -441,7 +441,7 @@ export default function UiCraftLab() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-4 lg:col-span-4">
+            <div className="flex min-w-0 flex-col justify-between gap-4 lg:col-span-4">
               <div className="space-y-3">
                 <div>
                   <span className="mb-1.5 block font-mono-code text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
@@ -546,7 +546,7 @@ export default function UiCraftLab() {
         {/* TAB 2: Spring Street FinTech Explorer */}
         {activeTab === 'spring' && (
           <div className="surface-card animate-modal-pop mt-4 grid gap-6 rounded-2xl p-4 shadow-xs sm:p-6 lg:grid-cols-12">
-            <div className="lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8">
               <div className="rounded-xl border border-slate-800 bg-gradient-to-br from-slate-950 via-[#0f172a] to-[#062e24] p-4 text-white">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
@@ -591,7 +591,7 @@ export default function UiCraftLab() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-4 lg:col-span-4">
+            <div className="flex min-w-0 flex-col justify-between gap-4 lg:col-span-4">
               <div>
                 <span className="mb-2 block font-mono-code text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
                   Select Asset / Basket
@@ -639,15 +639,16 @@ export default function UiCraftLab() {
         {/* TAB 3: Firefox Homepage Glass Token Studio */}
         {activeTab === 'firefox' && (
           <div className="surface-card animate-modal-pop mt-4 grid gap-6 rounded-2xl p-4 shadow-xs sm:p-6 lg:grid-cols-12">
-            <div className="lg:col-span-7">
+            <div className="min-w-0 lg:col-span-7">
               <div
-                className="relative flex min-h-[260px] items-center justify-center overflow-hidden rounded-xl p-6"
+                className="relative flex min-h-[240px] items-center justify-center overflow-hidden rounded-xl p-4 sm:min-h-[260px] sm:p-6"
                 style={{
                   background: `radial-gradient(circle at 20% 20%, ${accent.glow}, transparent 55%), linear-gradient(135deg, #111827 0%, #1e293b 50%, #0f172a 100%)`,
                 }}
               >
                 <div
                   onMouseMove={(e) => {
+                    if (window.matchMedia?.('(hover: none)').matches) return;
                     const rect = e.currentTarget.getBoundingClientRect();
                     const px = (e.clientX - rect.left) / rect.width - 0.5;
                     const py = (e.clientY - rect.top) / rect.height - 0.5;
@@ -686,7 +687,7 @@ export default function UiCraftLab() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-4 lg:col-span-5">
+            <div className="flex min-w-0 flex-col justify-between gap-4 lg:col-span-5">
               <div className="space-y-3.5">
                 <div>
                   <label htmlFor="blur-range" className="mb-1 flex justify-between font-mono-code text-xs text-[var(--text-secondary)]">
@@ -770,7 +771,7 @@ export default function UiCraftLab() {
                     <span>{copiedCss ? 'Copied' : 'Copy'}</span>
                   </button>
                 </div>
-                <pre className="mt-2 overflow-x-auto font-mono-code text-[11px] leading-relaxed text-[var(--text-primary)]">
+                <pre className="mt-2 overflow-x-auto whitespace-pre-wrap break-words font-mono-code text-[11px] leading-relaxed text-[var(--text-primary)]">
                   {cssOutput}
                 </pre>
               </div>

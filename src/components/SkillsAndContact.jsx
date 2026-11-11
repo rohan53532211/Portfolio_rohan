@@ -160,7 +160,7 @@ export default function SkillsAndContact() {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  className="w-full rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-base text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none sm:text-sm"
                 />
               </div>
 
@@ -176,7 +176,7 @@ export default function SkillsAndContact() {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                  className="w-full rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-base text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none sm:text-sm"
                 />
               </div>
 
@@ -192,7 +192,7 @@ export default function SkillsAndContact() {
                   placeholder="Your Message"
                   value={formData.message}
                   onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
-                  className="w-full resize-y rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none"
+                  className="w-full resize-y rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 text-base text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-emerald-500 focus:outline-none sm:text-sm"
                 />
               </div>
 

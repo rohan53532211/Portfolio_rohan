@@ -8,7 +8,7 @@ export default function ExperienceAndAchievements() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Left: Experience & Education */}
-          <div className="space-y-6 lg:col-span-7">
+          <div className="min-w-0 space-y-6 lg:col-span-7">
             <Reveal>
               <div>
                 <p className="font-mono-code text-xs font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
@@ -91,7 +91,7 @@ export default function ExperienceAndAchievements() {
           </div>
 
           {/* Right: Leadership & Recognition */}
-          <div className="space-y-6 lg:col-span-5">
+          <div className="min-w-0 space-y-6 lg:col-span-5">
             <Reveal>
               <div>
                 <p className="font-mono-code text-xs font-semibold uppercase tracking-wider text-[var(--accent-primary)]">

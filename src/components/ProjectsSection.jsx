@@ -63,7 +63,7 @@ export default function ProjectsSection({ selectedProject, onSelectProject }) {
               </p>
             </div>
 
-            <div className="w-full max-w-xs">
+            <div className="w-full lg:max-w-xs">
               <div className="flex items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-2 focus-within:border-[var(--accent-primary)]">
                 <Search className="h-4 w-4 shrink-0 text-[var(--text-muted)]" />
                 <input
@@ -72,7 +72,7 @@ export default function ProjectsSection({ selectedProject, onSelectProject }) {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Filter by stack (React, XGBoost, C++)..."
                   aria-label="Filter projects by keyword"
-                  className="w-full bg-transparent text-xs text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none sm:text-sm"
+                  className="w-full bg-transparent text-base text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none sm:text-sm"
                 />
                 {searchQuery && (
                   <button
@@ -135,8 +135,8 @@ export default function ProjectsSection({ selectedProject, onSelectProject }) {
         ) : (
           <div className="mt-9 grid gap-6 md:grid-cols-2">
             {filteredProjects.map((project, idx) => (
-              <Reveal key={project.id} delay={(idx % 2) * 80}>
-                <article className="surface-card group flex h-full flex-col justify-between rounded-2xl p-5 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-[var(--text-muted)] hover:shadow-md">
+              <Reveal key={project.id} delay={(idx % 2) * 80} className="min-w-0">
+                <article className="surface-card group flex h-full min-w-0 flex-col justify-between rounded-2xl p-4 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-[var(--text-muted)] hover:shadow-md sm:p-5">
                   <div>
                     <ProjectVisual type={project.previewType} />
 

@@ -75,6 +75,7 @@ export default function Hero() {
   };
 
   const handleCardMove = (e) => {
+    if (window.matchMedia?.('(hover: none)').matches) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
@@ -90,20 +91,20 @@ export default function Hero() {
     >
       <div className="hero-spotlight pointer-events-none absolute inset-0 transition-opacity duration-300" />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-22">
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <div className="mb-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 py-1.5 shadow-xs">
-              <span className="relative flex h-2 w-2">
+      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-20 lg:py-22">
+        <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="min-w-0 lg:col-span-7">
+            <div className="mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1.5 shadow-xs sm:mb-6 sm:px-3.5">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--emerald-status)] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--emerald-status)]" />
               </span>
-              <span className="font-mono-code text-xs font-medium text-[var(--text-secondary)]">
-                IIT Kanpur &apos;27 · Open to SDE / Frontend · Product · Finance Roles
+              <span className="font-mono-code text-[11px] font-medium text-[var(--text-secondary)] sm:text-xs">
+                IIT Kanpur &apos;27 · Open to SDE / Frontend · Product · Finance
               </span>
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.3rem] lg:leading-[1.08]">
+            <h1 className="text-[2rem] leading-[1.12] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.3rem] lg:leading-[1.08]">
               {PROFILE.headlineLead}{' '}
               <span className="font-serif-display font-normal italic text-[var(--accent-primary)]">
                 {PROFILE.headlineAccent}
@@ -111,14 +112,14 @@ export default function Hero() {
               {PROFILE.headlineTail}
             </h1>
 
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--text-secondary)] sm:mt-5 sm:text-lg">
               {PROFILE.subTagline}
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-col gap-2.5 sm:mt-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-xl bg-[var(--text-primary)] px-5 py-3 text-sm font-semibold text-[var(--bg-page)] shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--text-primary)] px-5 py-3 text-sm font-semibold text-[var(--bg-page)] shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
               >
                 <span>Explore Selected Work</span>
                 <ArrowDownRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -126,7 +127,7 @@ export default function Hero() {
 
               <a
                 href="#domains"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--text-muted)]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--text-muted)] sm:w-auto"
               >
                 <span>SDE · PM · Finance</span>
               </a>
@@ -134,7 +135,7 @@ export default function Hero() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 py-3 font-mono-code text-xs font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 py-3 font-mono-code text-xs font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--text-muted)] hover:text-[var(--text-primary)] sm:w-auto"
               >
                 {copiedEmail ? (
                   <>
@@ -170,40 +171,40 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-[var(--text-secondary)]">
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[var(--text-secondary)]">
               <a
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-[var(--text-primary)]"
               >
-                <Github className="h-4 w-4" />
+                <Github className="h-4 w-4 shrink-0" />
                 <span>github.com/rohan53532211</span>
               </a>
-              <span className="text-[var(--border-hairline)]">/</span>
+              <span className="hidden text-[var(--border-hairline)] sm:inline">/</span>
               <a
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-[var(--text-primary)]"
               >
-                <Linkedin className="h-4 w-4" />
+                <Linkedin className="h-4 w-4 shrink-0" />
                 <span>LinkedIn</span>
               </a>
-              <span className="text-[var(--border-hairline)]">/</span>
+              <span className="hidden text-[var(--border-hairline)] sm:inline">/</span>
               <a
                 href={PROFILE.codeforces}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-medium transition-colors hover:text-[var(--text-primary)]"
               >
-                <Terminal className="h-4 w-4" />
+                <Terminal className="h-4 w-4 shrink-0" />
                 <span>Codeforces (bt_hai)</span>
               </a>
             </div>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <div
               onMouseMove={handleCardMove}
               onMouseLeave={() => setTilt({ rx: 0, ry: 0 })}

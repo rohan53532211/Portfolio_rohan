@@ -21,14 +21,14 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 backdrop-blur-xs sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
       onClick={onClose}
     >
       <div
-        className="surface-card animate-modal-pop relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl p-5 shadow-2xl sm:p-7"
+        className="surface-card animate-modal-pop relative max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-2xl p-4 shadow-2xl sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4">
